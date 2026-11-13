@@ -29,14 +29,22 @@ class Solution:
             for j in range(len(grid[0])):
                 max_rising_water = max(max_rising_water, grid[i][j])
         
+        
+
+        n = 2
+        condition = 2
+
         left = 0
-        right = max_rising_water
+        right = n #or max possible value for search on ans space
 
         while left < right:
             mid = left + (right - left) // 2
-            if can_swim(mid):
+            if condition(mid):
                 right = mid
             else:
                 left = mid + 1
         
         return left
+
+
+    
