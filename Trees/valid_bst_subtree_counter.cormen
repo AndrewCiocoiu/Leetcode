@@ -1,3 +1,6 @@
+A tree is valid BST if all of its subtrees are valid BST meaning that the BST property of smaller values on the left and bigger values on the right than the current value is kept across all its children. To achieve O(n) we are using a bottom up tuple pattern which requires us holding the thing we want to find out: nr_of_valid_bst and what we need to check this condition in any point: if the children are valid BSTs and what is the current global minimum and global maximum downards in the tree. For the base case we return inverted ifninities as the globals so that anything is bigger than them.
+
+
 COUNT-BST-SUBTREES(root)
     if root == nil
         return {+inf, -inf, true, 0}
