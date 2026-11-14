@@ -1,0 +1,17 @@
+A binary subtree is a PBT if its children are PBT and if the absolute difference between the number of nodes in its left side and right side is not bigger than 1. To solve this efficiently in O(n) time complexity we are going to be using the bottom up tuple pattern. We will need to hold our conclusion in the tuple (maxPBTSize) and the properties that we need to affirm it in our current node: leftreeSize, righttreeSize and whether they are PBT or not
+
+LARGEST-PBT-SUBTREE-SIZE(root)
+    if root == nil
+        return {0, true, 0}
+    
+    {subTreeSizeL, isPBTL, PBTMaxSizeL} = LARGEST-PBT-SUBTREE(left[root])
+    {subTreeSizeR, isPBTR, PBTMaxSizeR} = LARGEST-PBT-SUBTREE(right[root])
+
+    if isPBTL and isPBTR and abs(subTreeSizeL - subTreeSizeR) <= 1
+        size = subTreeSizeL + subTreeSizeR + 1
+        isPBT = true
+        PBTMaxSize = max(size, PBTMaxSizeL, PBTMaxSizeR)
+
+        return {size, isPBT, PBTMaxSize}
+    else
+        return {subTreeSizeL + subTreeSizeR + 1, false, max(PBTMaxSizeL, PBTMaxSizeR)}
