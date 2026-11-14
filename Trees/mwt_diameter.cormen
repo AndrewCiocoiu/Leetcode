@@ -1,0 +1,27 @@
+MWT-DIAMETER(root)
+    if root == nil
+        return {-1, 0}
+    
+    h1 = -1
+    h2 = -1
+    maxChildDiam = 0
+
+    c = left[root]
+    while c != nil
+        {childH, childD} = MWT-DIAMETER(c)
+
+        if childD > maxChildDiam
+            maxChildDiam = childD
+
+        if hc > h1
+            h2 = h1
+            h1 = hc
+        else if hc > h2
+            h2 = hc
+        
+        c = right[c]
+    
+    height = 1 + h1
+    diam = max(h1 + h2 + 2, maxChildDiam)
+
+    return {height, diam}
