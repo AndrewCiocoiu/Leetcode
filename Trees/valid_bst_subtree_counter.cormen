@@ -1,0 +1,18 @@
+COUNT-BST-SUBTREES(root)
+    if root == nil
+        return {+inf, -inf, true, 0}
+    
+    {leftMin, leftMax, isBSTL, countL} = COUNT-BST-SUBTREES(left[root])
+    {rightMin, rightMax, isBSTR, countR} = COUNT-BST-SUBTREES(right[root])
+
+    if isBSTL and isBSTR and leftMax < val[root] and rightMin > val[root]
+        isBST = true
+        count = countL + countR + 1
+        minVal = min(leftMin, val[root])
+        maxVal = max(rightMax, val[root])
+
+        return {minVal, maxVal, isBST, count}
+    
+    else
+        return {-inf, +inf, false, countL + countR}
+    
