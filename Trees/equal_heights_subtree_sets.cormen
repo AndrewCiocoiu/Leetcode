@@ -1,0 +1,21 @@
+GROUP-EQUAL-HEIGHT-R3(root, buckets)
+    if root == nil
+        return {-1}
+    
+    h = -1
+    child = nil
+
+    c = left[root]
+
+    while c != nil
+        hC = GROUP-EQUAL-HEIGHT-R3(c, buckets)
+        if hC > h
+            h = hC
+        
+        c = right[c]
+
+    myH = h + 1
+    
+    buckets[myH] add root
+
+    return myH 
