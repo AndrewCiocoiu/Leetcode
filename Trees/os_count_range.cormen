@@ -1,0 +1,33 @@
+FIND_LOWER_BOUND(root, target):
+    candidate = nil
+    curr = root
+
+    while curr
+        if curr.val >= target
+            curr = curr.left
+        else
+            curr = curr.right
+    
+    return candidate
+
+FIND_UPPER_BOUND(root, target):
+    candidate = nil
+    curr = root
+
+    while curr
+        if curr.val <= target
+            candidate = curr
+            curr = curr.right
+        else
+            curr = curr.left
+    
+    return candidate
+
+OS-COUNT-RANGE(T, k1, k2)
+    lower = FIND_LOWER_BOUND(T, k1)
+    upper = FIND_UPPER_BOUND(T, k2)
+
+    return val[upper] - val[lower] + 1
+
+
+Time complexity is O(h) where h = log n because we are effectively removing each half of the tree when searching for the bounds. Because we search twice it is effectivelly O(2h). Space complexity is also O(h) because we use recursion stacks
