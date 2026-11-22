@@ -6,26 +6,19 @@
 #         self.right = right
 class Solution:
     def deepestLeavesSum(self, root: TreeNode | None) -> int:
-        def BFS(root):
-            q = deque([root])
-
+        def find_depth(root):
             if not root:
                 return 0
-
-            last_sum = 0
-
-            while q:
-                curr_level = []
-                for i in range(len(q)):
-                    curr_node = q.popleft()
-                    curr_level.append(curr_node.val)
-
-                    if curr_node.left:
-                        q.append(curr_node.left)
-                    if curr_node.right:
-                        q.append(curr_node.right)
-                
             
-            return sum(curr_level)
+            return max(find_depth(root.left), find_depth(root.right)) + 1
+
+        max_depth = find_depth(root)
+
+        def find_sum(root, curr_depth):
+            if not root or curr_depth == max_depth:
+                return 0 if not root else root.val
+            
+            return find_sum(root.left, curr_depth + 1) + find_sum(root.right, curr_depth + 1)
         
-        return BFS(root)
+        return find_sum(root, 1)
+
